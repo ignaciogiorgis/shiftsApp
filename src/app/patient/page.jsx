@@ -1,5 +1,5 @@
 import CardPatient from '../../../Components/CardPatient'
-import { getPatients } from '../services/fetch'
+import { getPatients } from '@/app/services/fetch'
 
 const page = async () => {
   const patients = await getPatients()

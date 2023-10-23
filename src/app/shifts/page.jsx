@@ -1,6 +1,6 @@
 import { API_URL } from '../config'
 import { getShifts } from '@/app/services/fetch'
-import CardShifts from '../../../Components/CardShifts'
+import CardShifts from './CardShifts'
 
 const page = async () => {
   const shifts = await getShifts()
@@ -15,6 +15,7 @@ const page = async () => {
                 shift={shift}
                 namePatient={namePatient}
                 description={description}
+                id={id}
               />
             </div>
           </div>

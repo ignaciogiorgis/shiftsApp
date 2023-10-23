@@ -1,6 +1,9 @@
-import React from 'react'
+'use client'
+import { useRouter } from 'next/navigation'
 
-const CardShifts = ({ description, namePatient, shift }) => {
+const CardShifts = ({ description, namePatient, shift, id }) => {
+  const router = useRouter()
+
   return (
     <div>
       <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -22,8 +25,8 @@ const CardShifts = ({ description, namePatient, shift }) => {
           {description}
         </p>
         <p
-          href="#"
-          className="inline-flex items-center text-blue-600 hover:underline"
+          onClick={() => router.push(`/shifts/${id}`)}
+          className="inline-flex items-center text-blue-600 hover:underline cursor-pointer "
         >
           {shift}
           <svg
