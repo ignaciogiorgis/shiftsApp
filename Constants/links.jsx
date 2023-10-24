@@ -1,5 +1,6 @@
 export const links = [
-  { label: 'home', route: '/' },
-  { label: 'shifts', route: '/shifts' },
-  { label: 'patients', route: '/patients' },
+  { label: 'Home', route: '/' },
+  { label: 'Shifts', route: '/shifts' },
+  { label: 'Create Shift', route: '/create-shift' },
+  { label: 'Patients', route: '/patients' },
 ]
