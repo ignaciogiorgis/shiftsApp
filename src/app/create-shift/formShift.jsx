@@ -1,27 +1,39 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { createShift } from '../services/fetch'
 import { parseDate } from '../services/services'
+import ErrorForm from '@/Components/ErrorForm'
 
 const formShift = () => {
   const [namePatient, setNamePatient] = useState('')
   const [description, setDescription] = useState('')
   const [time, setTime] = useState('')
   const [date, setDate] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
-    const newShift = {
-      data: {
-        namePatient,
-        description,
-        shift: parseDate(date + 'T' + time),
-      },
-    }
+    if (
+      namePatient === '' ||
+      description === '' ||
+      time === '' ||
+      date === ''
+    ) {
+      setError(true)
+    } else {
+      const newShift = {
+        data: {
+          namePatient,
+          description,
+          shift: parseDate(date + 'T' + time),
+        },
+      }
 
-    await createShift(newShift)
+      await createShift(newShift)
+      router.push(`/shifts`)
+    }
   }
 
   return (
@@ -87,13 +99,12 @@ const formShift = () => {
         <div>
           <button
             type="submit"
-            disabled={isLoading}
             onClick={(e) => handleSubmit(e)}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full    py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full    py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-slate-300"
           >
-            {!isLoading && 'Create New Shift'}
-            {isLoading && 'Add...'}
+            Create New Shift
           </button>
+          <div className='mt-4'>{error && <ErrorForm />}</div>
         </div>
       </form>
     </div>
