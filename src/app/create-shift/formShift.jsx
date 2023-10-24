@@ -30,7 +30,7 @@ const formShift = () => {
           shift: parseDate(date + 'T' + time),
         },
       }
-
+      setError(false)
       await createShift(newShift)
       router.push(`/shifts`)
     }
@@ -104,7 +104,7 @@ const formShift = () => {
           >
             Create New Shift
           </button>
-          <div className='mt-4'>{error && <ErrorForm />}</div>
+          <div className="mt-4">{error && <ErrorForm />}</div>
         </div>
       </form>
     </div>
