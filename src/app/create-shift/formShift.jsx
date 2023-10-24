@@ -21,11 +21,11 @@ const formShift = () => {
       },
     }
 
-     await createShift(newShift)
+    await createShift(newShift)
   }
 
   return (
-    <div className="w-2/5">
+    <div className="w-2/5 border border-gray-400  p-14 rounded-xl">
       <form action="">
         <div className="mb-6">
           <label
