@@ -42,7 +42,6 @@ export const getShift = async (id) => {
 }
 
 export const createShift = async (shift) => {
-  console.log(shift, '*********************************')
   try {
     const res = await fetch(`http://localhost:1337/api/shifts`, {
       method: 'POST',
@@ -66,7 +65,9 @@ export const createShift = async (shift) => {
 
 export const getPatients = async () => {
   try {
-    const res = await fetch(`http://localhost:1337/api/patients`)
+    const res = await fetch(`http://localhost:1337/api/patients`, {
+      next: { revalidate: 10 },
+    })
     if (!res.ok) {
       throw new Error(
         `Failed to fetch data from the server. Status: ${res.status}`
@@ -77,6 +78,26 @@ export const getPatients = async () => {
       const { name, email, birthDate } = attributes
       return { name, email, birthDate, id }
     })
+  } catch (error) {
+    console.error('Error en la solicitud fetch:', error)
+    throw error
+  }
+}
+
+export const getPatient = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:1337/api/patients/${id}`, {
+      next: { revalidate: 10 },
+    })
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch data from the server. Status: ${res.status}`
+      )
+    }
+    const { data } = await res.json()
+    const { attributes } = data
+    const { name, email, birthDate } = attributes
+    return { name, email, birthDate }
   } catch (error) {
     console.error('Error en la solicitud fetch:', error)
     throw error
