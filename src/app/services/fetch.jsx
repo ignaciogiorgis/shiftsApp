@@ -1,4 +1,4 @@
-//Shifts
+//Shifts----------------------------------------------------------------
 
 export const getShifts = async () => {
   try {
@@ -41,7 +41,28 @@ export const getShift = async (id) => {
   }
 }
 
-//patients
+export const createShift = async (shift) => {
+  console.log(shift, '*********************************')
+  try {
+    const res = await fetch(`http://localhost:1337/api/shifts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(shift),
+    })
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch data from the server. Status: ${res.status}`
+      )
+    }
+  } catch (error) {
+    console.error('Error en la solicitud fetch:', error)
+    throw error
+  }
+}
+
+//patients----------------------------------------------------------
 
 export const getPatients = async () => {
   try {
