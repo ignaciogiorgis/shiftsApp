@@ -1,5 +1,12 @@
-const ModalDelete = ({ isOpen, onClose, children }) => {
+import { deleteShift } from '@/app/services/fetch'
+
+const ModalDelete = async ({ isOpen, onClose, id }) => {
   if (!isOpen) return null
+  const handleDeleteShift = async (id) => {
+    await deleteShift(id)
+    onClose()
+  }
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-slate-950 bg-opacity-80">
       <div className="relative w-full max-w-md max-h-full bg ">
@@ -34,6 +41,7 @@ const ModalDelete = ({ isOpen, onClose, children }) => {
             <button
               data-modal-hide="popup-modal"
               type="button"
+              onClick={() => handleDeleteShift(id)}
               className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
             >
               Yes, I'm sure

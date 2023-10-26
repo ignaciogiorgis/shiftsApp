@@ -3,7 +3,7 @@
 export const getShifts = async () => {
   try {
     const res = await fetch(`http://localhost:1337/api/shifts`, {
-      next: { revalidate: 10 },
+      next: { revalidate: 1 },
     })
     if (!res.ok) {
       throw new Error(
@@ -49,6 +49,22 @@ export const createShift = async (shift) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(shift),
+    })
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch data from the server. Status: ${res.status}`
+      )
+    }
+  } catch (error) {
+    console.error('Error en la solicitud fetch:', error)
+    throw error
+  }
+}
+
+export const deleteShift = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:1337/api/shifts/${id}`, {
+      method: 'DELETE',
     })
     if (!res.ok) {
       throw new Error(
