@@ -6,7 +6,7 @@ import ModalEdit from './modalEdit'
 
 const CardShifts = ({ namePatient, shift, description, id }) => {
   const router = useRouter()
-
+  
   const [isModalOpenDelete, setIsModalOpenDelete] = useState(false)
   const [isModalOpenEdit, setIsModalOpenEdit] = useState(false)
 
@@ -76,7 +76,11 @@ const CardShifts = ({ namePatient, shift, description, id }) => {
           </button>
         </div>
       </div>
-      <ModalDelete isOpen={isModalOpenDelete} onClose={closeModalDelete} />
+      <ModalDelete
+        isOpen={isModalOpenDelete}
+        onClose={closeModalDelete}
+        id={id}
+      />
       <ModalEdit
         isOpen={isModalOpenEdit}
         onClose={closeModalEdit}
