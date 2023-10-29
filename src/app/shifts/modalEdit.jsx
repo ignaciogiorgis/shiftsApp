@@ -1,11 +1,18 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import {} from '../services/fetch'
+import { editShift } from '../services/fetch'
 import { parseDate } from '../services/services'
 import ErrorForm from '@/Components/ErrorForm'
 
-const ModalEdit = ({ isOpen, onClose, namePatient, shift, description }) => {
+const ModalEdit = ({
+  isOpen,
+  onClose,
+  namePatient,
+  shift,
+  description,
+  id,
+}) => {
   const date = shift?.slice(0, 10)
   const time = shift?.slice(11, 16)
 
@@ -15,6 +22,7 @@ const ModalEdit = ({ isOpen, onClose, namePatient, shift, description }) => {
   const [dateNew, setDateNew] = useState(date)
   const [error, setError] = useState(false)
   const router = useRouter()
+  console.log(timeNew)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -34,8 +42,8 @@ const ModalEdit = ({ isOpen, onClose, namePatient, shift, description }) => {
         },
       }
       setError(false)
-      //   await createShift(newShift)
-      router.push(`/shifts`)
+      await editShift(newShift, id)
+      onClose()
     }
   }
   if (!isOpen) return null
