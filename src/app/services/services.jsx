@@ -15,3 +15,17 @@ export const parseDate = (newDate) => {
 
   return fechaFormateada
 }
+
+export const parseViewDate = (initialDate) => {
+  const objectDate = new Date(initialDate)
+
+  const year = objectDate.getUTCFullYear()
+  const month = String(objectDate.getUTCMonth() + 1).padStart(2, '0')
+  const day = String(objectDate.getUTCDate()).padStart(2, '0')
+  const hour = String(objectDate.getUTCHours()).padStart(2, '0')
+  const minute = String(objectDate.getUTCMinutes()).padStart(2, '0')
+  const second = String(objectDate.getUTCSeconds()).padStart(2, '0')
+
+  const newFormat = `${day}/${month}/${year} ${hour}:${minute}:${second} UTC`
+  return newFormat
+}
