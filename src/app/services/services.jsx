@@ -29,3 +29,14 @@ export const parseViewDate = (initialDate) => {
   const newFormat = `${day}/${month}/${year} ${hour}:${minute}:${second} UTC`
   return newFormat
 }
+
+export const sortDate = (elements) => {
+  const sortedElements = elements.slice().sort((a, b) => {
+    const fechaA = new Date(a?.attributes?.shift?.slice(0, 10))
+    const fechaB = new Date(b?.attributes?.shift?.slice(0, 10))
+
+    return fechaA - fechaB
+  })
+
+  return sortedElements
+}
