@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import CardShift from './CardShift'
-import { getShift } from '@/app/services/fetch'
+import { getShift } from '../../services/fetch'
 import Loading from './loading'
 
 const page = async ({ params }) => {

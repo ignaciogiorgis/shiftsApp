@@ -1,5 +1,5 @@
 import CardPatients from './CardPatients'
-import { getPatients } from '../services/fetch'
+import { getPatients } from '../../services/fetch'
 
 const page = async () => {
   const patients = await getPatients()
