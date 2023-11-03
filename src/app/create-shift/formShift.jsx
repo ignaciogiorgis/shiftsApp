@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createShift } from '../services/fetch'
 import { parseDate } from '../services/services'
-import ErrorForm from '@/Components/ErrorForm'
+import ErrorForm from '../../Components/ErrorForm'
 
 const formShift = () => {
   const [namePatient, setNamePatient] = useState('')

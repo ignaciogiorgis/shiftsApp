@@ -1,12 +1,11 @@
 import { API_URL } from '../config'
-import { getShifts } from '@/app/services/fetch'
+import { getShifts } from '../services/fetch'
 import CardShifts from './CardShifts'
 import { sortDate } from '../services/services'
 
 const page = async () => {
   const shifts = await getShifts()
   const listShifts = sortDate(shifts)
-  console.log(listShifts, '*-***********************')
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 px-5">

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { editShift } from '../services/fetch'
 import { parseDate } from '../services/services'
-import ErrorForm from '@/Components/ErrorForm'
+import ErrorForm from '../../Components/ErrorForm'
 
 const ModalEdit = ({
   isOpen,
@@ -22,7 +22,6 @@ const ModalEdit = ({
   const [dateNew, setDateNew] = useState(date)
   const [error, setError] = useState(false)
   const router = useRouter()
-  console.log(timeNew)
 
   const handleSubmit = async (e) => {
     e.preventDefault()

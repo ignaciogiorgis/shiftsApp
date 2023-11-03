@@ -1,5 +1,5 @@
 import CardPatient from './cardPatient'
-import { getPatient } from '@/app/services/fetch'
+import { getPatient } from '../../services/fetch'
 
 const page = async ({ params }) => {
   const { id } = params

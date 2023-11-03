@@ -1,4 +1,4 @@
-import { deleteShift } from '@/app/services/fetch'
+import { deleteShift } from '../services/fetch'
 
 const ModalDelete = async ({ isOpen, onClose, id }) => {
   if (!isOpen) return null
