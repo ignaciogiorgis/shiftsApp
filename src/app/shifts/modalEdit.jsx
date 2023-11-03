@@ -8,7 +8,7 @@ import ErrorForm from '../../Components/ErrorForm'
 const ModalEdit = ({
   isOpen,
   onClose,
-  namePatient,
+  namePatient,  
   shift,
   description,
   id,
